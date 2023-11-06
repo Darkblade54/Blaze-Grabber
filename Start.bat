@@ -2,7 +2,6 @@
 cd /d %~dp0
 color 3
 title Welcome To Zephyr
-start /d "Components" Zephyr-UI-Loader.exe
 title Installing Requirements
 pip install -r requirements.txt
 title Checking Python installation...
