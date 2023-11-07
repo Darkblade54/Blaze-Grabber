@@ -3,6 +3,7 @@
 <h1 id="top" align="center">
     <a href="https://discord.gg/TvSNYBnmhw">
         <img src="https://img.shields.io/badge/Discord-%238B0000.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Join our Discord">
+        <img src="https://img.shields.io/github/stars/Darkblade54/Zephry-Grapper">
     </a>
     <br>
         <img src="https://cdn.discordapp.com/attachments/1164559111879393342/1170816488752545887/icon.jpg?ex=655a6ad3&is=6547f5d3&hm=7b0f8969f3590742aa3a87755b0fbfeb77693d0eacdd6e6b26a2b5c7c9ee67f9&">
