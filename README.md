@@ -2,11 +2,9 @@
 
 <h1 id="top" align="center">
   <br>
-  <a href="https://github.com/DamagingRose/Rose-Grabber"><img src="https://raw.githubusercontent.com/DamagingRose/Rose-Grabber/main/resources/assets/rosebb.png" alt="R"></a>
-  <br>
-</h1>
 
 <img src="https://discord.gg/5ZMPbGGa9V">
+</h1>
 
 **Info:** Zephry Grapper is a OP grabber which grabs everything from a computer such as cookies, discord tokens, passwords, system info and stuff like that.
 
