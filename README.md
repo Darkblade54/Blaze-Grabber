@@ -1,7 +1,12 @@
 # Zephry-Grapper
 
+<h1 id="top" align="center">
+  <br>
+  <a href="https://github.com/DamagingRose/Rose-Grabber"><img src="https://raw.githubusercontent.com/DamagingRose/Rose-Grabber/main/resources/assets/rosebb.png" alt="R"></a>
+  <br>
+</h1>
 
-<img src="https://cdn.discordapp.com/attachments/1164559111879393342/1170816488752545887/icon.jpg?ex=655a6ad3&is=6547f5d3&hm=7b0f8969f3590742aa3a87755b0fbfeb77693d0eacdd6e6b26a2b5c7c9ee67f9&">
+<img src="https://discord.gg/5ZMPbGGa9V">
 
 **Info:** Zephry Grapper is a OP grabber which grabs everything from a computer such as cookies, discord tokens, passwords, system info and stuff like that.
 
