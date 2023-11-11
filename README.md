@@ -17,7 +17,7 @@
 **Note:** If the grabber fails to function, attempt rebuilding it without enabling the "Anti VM" option.
 
 ## Features
-
+```json
     • GUI Builder.
     • UAC Bypass.
     • Custom Icon.
@@ -53,6 +53,7 @@
     • Captures Webcam Image.
     • Sends All Data Through Discord Webhooks/Telegram Bot.
     (...more)
+```
 
 ## How To Build
 
