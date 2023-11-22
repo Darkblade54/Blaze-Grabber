@@ -1,4 +1,4 @@
-# Zephry-Grabber
+# Blaze-Grabber
 
 <h1 id="top" align="center">
     <a href="https://discord.gg/TvSNYBnmhw">
